@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="/static/interface.css" rel="stylesheet">
+  <link href="/static/global.css" rel="stylesheet">
+  <style>
+    @media print {
+      .sign_out_button {
+        display: none;
+      }
+    }
+
+    @media screen {
+      .sign_out_button {
+        display: block;
+        margin: 20px auto 0 auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <form action="/back" method="post">
+    <input type="submit" value="Выйти" class="sign_out_button">
+  </form>
+  <img src="/static/images/guarantee_with_qr.jpg?{{ time }}" alt="Гарантия с QR-кодом" style="width: 100%;">
+  <script>
+    window.addEventListener('load', function () {
+      window.print();
+    });
+  </script>
+</body>
+
+</html>

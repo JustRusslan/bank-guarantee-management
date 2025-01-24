@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guarantee</title>
+    <link href="/static/global.css" rel="stylesheet">
+    <link href="/static/guarantee.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="main">
+        <header class="header">
+            <figure class="header__figure">
+                <img class="header__logo" src="https://bakai.kg/static/img/bakai_logo_light-theme.svg" alt="Bakai Logo">
+            </figure>
+        </header>
+        <h1 class="title">БАНКОВСКАЯ ГАРАНТИЯ</h1>
+        <div class="highlights">
+            <div class="highlights__item highlight">
+                <label class="highlight__title" for="date-of-issue">Дата выдачи:</label>
+                <time class="highlight__value time" id="date-of-issue" datetime="{{ data.start_date }}">{{
+                    data.start_date }}</time>
+            </div>
+            <div class="highlights__item highlight">
+                <label class="highlight__title" for="">Исходящий номер:</label>
+                <span class="highlight__value">{{ data.agreement_number }}</span>
+            </div>
+            <div class="highlights__item highlight">
+                <label class="highlight__title" for="">Серийный номер бланка:</label>
+                <span class="highlight__value">{{ data.serial_number }}</span>
+            </div>
+        </div>
+        <div class="guarantee">
+            <p class="guarantee__p text-indent">
+                Настоящим, ОАО “Бакай Банк” подтверждает подлинность {{ data.agreement_number }}, гарантия выдается на
+                сумму <span class="sumNumber" id="sumNumber">{{ data.amount }}</span> {{ data.currency }},
+                сроком действия с <time class="time" datetime="{{ data.start_date }}" id="from">{{ data.start_date
+                    }}</time> по <time class="time" datetime="{{ data.expiration_date }}" id="to">{{
+                    data.expiration_date }}</time>. Данная гарантия была выдана
+                {{ data.applicant }},
+                филиалом Бакай Банка по адресу: {{ data.branch }}.
+            </p>
+            <p class="guarantee__p">
+                Гарантия была выпущена по заявлению {{ data.applicant }} для *причина выдачи гарантии*.
+            </p>
+        </div>
+    </div>
+    <script>
+        var sumNumber = document.getElementById("sumNumber");
+        var type = typeof (sumNumber.textContent)
+        if (type !== 'number' && type === 'string') {
+            var formatted = sumNumber.textContent.replace(/ /gi, '').replace(/,/gi, '.');
+            sumNumber.textContent = Number.parseFloat(formatted).toLocaleString();
+        };
+    </script>
+</body>
+
+</html>
